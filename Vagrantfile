@@ -14,6 +14,7 @@ Vagrant.configure(2) do |config|
     chef.validation_key_path = "#{ENV['HOME']}/.chef/jhdc-validator.pem"
     chef.validation_client_name = 'jhdc-validator'
     chef.node_name = 'jhdc-staging'
+    chef.environment = 'staging'
     chef.delete_node = true
     chef.delete_client = true
     chef.run_list = ['jhdc-base', 'jhdc-web']
