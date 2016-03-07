@@ -17,10 +17,18 @@ Vagrant.configure(2) do |config|
     chef.environment = 'staging'
     chef.delete_node = true
     chef.delete_client = true
-    chef.run_list = ['jhdc-base', 'jhdc-web']
-    chef.json = { authorization: { sudo: {
-      groups: ['sysadmin'],
-      users: ['vagrant'],
-      passwordless: true } } }
+    chef.run_list = ['jhdc-base', 'jhdc-base::selinux', 'jhdc-web']
+    chef.json = {
+      authorization: {
+        sudo: {
+          groups: ['sysadmin'],
+          users: ['vagrant', 'puka'],
+          passwordless: true
+        }
+      },
+      puka: {
+        ssl: false
+      }
+    }
   end
 end
